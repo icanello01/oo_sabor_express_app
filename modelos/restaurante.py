@@ -1,13 +1,20 @@
-class restaurante:
+class Restaurante:
+    restaurantes = []
+
     def __init__(self, nome=None, categoria=None):
         self.nome = nome
         self.categoria = categoria
         self.ativo = False
+        Restaurante.restaurantes.append(self)
 
-restaurante_praca = restaurante('Praça', 'Brasileira')
-restaurante_pizza = restaurante('Pizzalia', 'Italiana')
+    def __str__(self):
+        return f'{self.nome} | {self.categoria}'
 
-restaurantes = [restaurante_praca, restaurante_pizza]
+    def listar_restaurantes():
+        for restaurante in Restaurante.restaurantes:
+            print(f'{restaurante.nome} | {restaurante.categoria} | {restaurante.ativo}')
 
-print (vars (restaurante_praca)) 
-print (vars (restaurante_pizza))
+restaurante_praca = Restaurante('Praça', 'Brasileira')
+restaurante_pizza = Restaurante('Pizzalia', 'Italiana')
+
+Restaurante.listar_restaurantes()
